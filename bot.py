@@ -10,16 +10,16 @@ downloads = './downloads/{}/'
 
 START_BUTTONS=[
     [
-        InlineKeyboardButton('السورس', url='https://github.com/JMTHON-AR/TikTok'),
-        InlineKeyboardButton('قناة البوتات', url='https://t.me/jmthon'),
+        InlineKeyboardButton('Creator', url='https://t.me/wwwwa'),
+        InlineKeyboardButton('Bot', url='https://t.me/wawbot'),
     ],]
 
 DL_BUTTONS=[
     [
-        InlineKeyboardButton('بدون علامه مائية', callback_data='nowm'),
-        InlineKeyboardButton('علامة مائية', callback_data='wm'),
+        InlineKeyboardButton('Without Watter Mark', callback_data='nowm'),
+        InlineKeyboardButton('With Watter Mark', callback_data='wm'),
     ],
-    [InlineKeyboardButton('مقطع صوتي', callback_data='audio')],
+    [InlineKeyboardButton('Mp3 File', callback_data='audio')],
 ]
 
 
@@ -40,7 +40,7 @@ async def run_cmd(cmd: str) -> Tuple[str, str, int, int]:
 
 @jmthon.on_message(filters.command('start') & filters.private)
 async def _start(bot, update):
-  await update.reply_text(f"** مرحبا أنا بوت تحميل من التيكتوك يمكنك تحميل الفيديوهات او المقاطع الصوتية من هنا فقط ارسل رابط المقطع هنا**", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+  await update.reply_text(f"** Hi I'm Bot For Download Tiktok Videos ! Available formats ( Mp3 File , Video ) **", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 # Downloader for tiktok
 @jmthon.on_message(filters.regex(pattern='.*http.*') & filters.private)
@@ -50,7 +50,7 @@ async def _tiktok(bot, update):
   resp = session.head(url, allow_redirects=True)
   if not 'tiktok.com' in resp.url:
     return
-  await update.reply('عليك تحديد نوع التنزيل من الاسفل ', True, reply_markup=InlineKeyboardMarkup(DL_BUTTONS))
+  await update.reply(' Select the download type below ', True, reply_markup=InlineKeyboardMarkup(DL_BUTTONS))
 
 # Callbacks
 @jmthon.on_callback_query()
